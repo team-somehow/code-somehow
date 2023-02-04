@@ -27,6 +27,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { data } from "../constants/languages";
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Modal, Pressable } from "react-native";
 
@@ -58,6 +59,26 @@ const EditorScreen = () => {
     }
   }, [value]);
 
+  const storeUser = async (value) => {
+		try {
+			await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
+			console.log("Saved")
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	// getting data
+	const getUser = async () => {
+		try {
+			const userData = await JSON.parse(await AsyncStorage.getItem("savedProbsMock"));
+      if (userData===null) return [];
+			return userData;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
   const finalSubmit = () => {
     console.log(answer)
     if (answer.length === 0 || ready.length === 0) return;
@@ -88,8 +109,13 @@ const EditorScreen = () => {
 
     axios
       .request(options)
-      .then(function (response) {
+      .then(async function (response) {
         // console.log(response.data);
+
+        let userData = await getUser();
+        userData.push(response.data.token);
+        console.log(userData);
+        storeUser(userData);
 
         const options1 = {
           method: "GET",
@@ -281,9 +307,6 @@ const EditorScreen = () => {
             <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"TAB"}</Text>
           </TouchableOpacity>
         </View>
-
-
-
 
         <TouchableOpacity onPress={finalSubmit} style={{ borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' }}>
           <Text
