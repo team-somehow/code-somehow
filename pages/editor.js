@@ -27,6 +27,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { data } from "../constants/languages";
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Modal, Pressable } from "react-native";
 
@@ -78,7 +79,6 @@ const EditorScreen = () => {
 		}
 	};
 
-
   const finalSubmit = () => {
     console.log(answer)
     if (answer.length === 0 || ready.length === 0) return;
@@ -109,11 +109,12 @@ const EditorScreen = () => {
 
     axios
       .request(options)
-      .then(function (response) {
+      .then(async function (response) {
         // console.log(response.data);
 
-        let userData = getUser();
+        let userData = await getUser();
         userData.push(response.data.token);
+        console.log(userData);
         storeUser(userData);
 
         const options1 = {
@@ -305,9 +306,6 @@ const EditorScreen = () => {
             <Text fontSize="4">{"TAB"}</Text>
           </TouchableOpacity>
         </View>
-
-
-
 
         <TouchableOpacity onPress={finalSubmit} style={{ borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' }}>
           <Text
