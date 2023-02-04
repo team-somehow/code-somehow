@@ -11,6 +11,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import HomeScreen from '../pages/home';
 import HackScreen from '../pages/hack';
+import EditorScreen from '../pages/editor';
 
 const Tab = createBottomTabNavigator();
 
@@ -56,11 +57,11 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
-            {/* <Tab.Screen
-                name="ProductStack"
-                component={ProductStack}
+            <Tab.Screen
+                name="Editor"
+                component={EditorScreen}
                 options={{
-                    tabBarLabel: 'Products',
+                    tabBarLabel: 'Editor',
                     tabBarIcon: ({ color, size }) => (
                         <AntDesign
                             name="appstore-o"
@@ -69,7 +70,7 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="ProfileStack"
                 component={ProfileStack}
                 options={{
