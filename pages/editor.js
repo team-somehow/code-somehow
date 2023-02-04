@@ -57,6 +57,7 @@ const EditorScreen = () => {
   }, [value]);
 
   const finalSubmit = () => {
+    console.log(answer)
     if (answer.length === 0 || ready.length === 0) return;
     const Buffer = require("buffer").Buffer;
     let encodedCode = new Buffer(answer).toString("base64");
@@ -194,11 +195,11 @@ const EditorScreen = () => {
         }}
         onChange={(e) => {
             console.log("before if", deleteText);
-            if (!deleteText) {
-              setDeleteText(true);
-              console.log("aaya");
-              return;
-            }
+            // if (!deleteText) {
+            //   setDeleteText(true);
+            //   console.log("aaya");
+            //   return;
+            // }
             console.log("e", e);
             console.log("this is ", answer);
             setAnswer(e);
