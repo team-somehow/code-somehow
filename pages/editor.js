@@ -23,6 +23,9 @@ import { useKeyboard } from '@react-native-community/hooks';
 import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { data } from '../constants/languages';
+import axios from "axios";
+
+import {Modal, Pressable } from 'react-native';
 
 const { width, height } = Dimensions.get("window");
 
@@ -31,6 +34,8 @@ const EditorScreen = () => {
     const keyboard = useKeyboard();
     const insets = useSafeAreaInsets();
     const [answer, setAnswer] = useState("");
+    const [submitted, setSubmitted] = useState(false);
+    const [output, setOutput] = useState("");
 
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
@@ -38,9 +43,63 @@ const EditorScreen = () => {
 
     useEffect(() => {
         for (var i=0; i<data.length; ++i) {
+            // console.log(data[i].value);
+            // console.log(value)
             if (data[i].value===value) {console.log(data[i]); setReady(data[i].ready); return;}
         }
     }, [value]);
+
+    const finalSubmit = () => {
+
+        if (answer.length===0 || ready.length===0) return;
+        const Buffer = require("buffer").Buffer;
+        let encodedCode = new Buffer(answer).toString("base64");
+        // console.log(encodedCode, value);
+        // console.log(ready)
+
+        const options = {
+            method: 'POST',
+            url: 'https://judge0-ce.p.rapidapi.com/submissions',
+            params: {base64_encoded: 'true', fields: '*'},
+            headers: {
+              'content-type': 'application/json',
+              'Content-Type': 'application/json',
+              'X-RapidAPI-Key': 'c3db0a96eemsh1a6c423dc0d2339p14805fjsn27d104a551e9',
+              'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+            },
+            data: '{"language_id":' + value.toString() + ',"source_code":"' + encodedCode + '"}'
+            
+          };
+
+        //   console.log(options);
+
+          
+        axios.request(options).then(function (response) {
+            // console.log(response.data);
+
+            const options1 = {
+            method: 'GET',
+            url: 'https://judge0-ce.p.rapidapi.com/submissions/'+response.data.token,
+            params: {base64_encoded: 'false', fields: '*'},
+            headers: {
+                'X-RapidAPI-Key': 'c3db0a96eemsh1a6c423dc0d2339p14805fjsn27d104a551e9',
+                'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+            }
+            };
+
+            axios.request(options1).then(function (res) {
+                setSubmitted(true);
+                console.log(res.data.stdout);
+                setOutput(res.data.stdout);
+            }).catch(function (error) {
+                console.error(error);
+            });
+
+        }).catch(function (error) {
+            console.error(error);
+        });
+
+    }
   
     const renderLabel = () => {
       if (value || isFocus) {
@@ -82,6 +141,31 @@ const EditorScreen = () => {
                 />
                 </View>
 
+            {submitted && 
+            
+            <View style={styles2.centeredView}>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={submitted}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setSubmitted(false);
+              }}>
+              <View style={styles2.centeredView}>
+                <View style={styles2.modalView}>
+                  <Text style={styles2.modalText}>{output}</Text>
+                  <Pressable
+                    style={[styles2.button, styles2.buttonClose]}
+                    onPress={() => setSubmitted(false)}>
+                    <Text style={styles2.textStyle}>Hide</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </Modal>
+          </View>
+            
+            }
 
             <CodeEditor
                     style={{
@@ -101,14 +185,7 @@ const EditorScreen = () => {
                 showLineNumbers
             />
 
-            <TouchableOpacity onPress={() => {
-                // console.log(answer, value);
-                if (answer.length===0 || ready.length===0) return;
-                const Buffer = require("buffer").Buffer;
-                let encodedCode = new Buffer(answer).toString("base64");
-                console.log(encodedCode, value);
-                console.log(ready)
-                }}>
+            <TouchableOpacity onPress={finalSubmit}>
                 <Text style={{
                    ... {
                 fontSize: 20,
@@ -172,6 +249,50 @@ const styles1 = StyleSheet.create({
     inputSearchStyle: {
       height: 40,
       fontSize: 16,
+    },
+  });
+
+  const styles2 = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 35,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+    },
+    buttonOpen: {
+      backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+      backgroundColor: '#2196F3',
+    },
+    textStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
     },
   });
   
