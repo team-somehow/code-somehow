@@ -35,7 +35,7 @@ const EditorScreen = ({ navigation, route }) => {
             <CodeEditor
                     style={{
                     ...{
-                        fontSize: 20,
+                        fontSize: 18,
                         inputLineHeight: 26,
                         highlighterLineHeight: 26,
                         marginBottom: 110
