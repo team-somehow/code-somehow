@@ -45,7 +45,7 @@ const TabNavigation = () => {
 			}}
 		>
 			<Tab.Screen
-				name="Home"
+				name="HomeTabs"
 				component={HomeStack}
 				options={{
 					tabBarLabel: "HomeTabs",

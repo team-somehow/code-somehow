@@ -17,6 +17,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width, height } = Dimensions.get("window");
 
@@ -75,6 +76,25 @@ const Item = ({ title, navigation, difficulty, item }) => (
 );
 
 const PracticeScreen = ({ navigation, route }) => {
+	const storeUser = async (value) => {
+		try {
+			await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
+			console.log("Saved")
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	// getting data
+	const getUser = async () => {
+		try {
+			const userData = JSON.parse(await AsyncStorage.getItem("savedProbsMock"))
+			console.log(userData)
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text>Questions</Text>
@@ -90,6 +110,8 @@ const PracticeScreen = ({ navigation, route }) => {
 				)}
 				keyExtractor={(item) => item.id}
 			></FlatList>
+			<TouchableOpacity onPress={() => storeUser(["uuid1", "uuid2"])}><Text>Store</Text></TouchableOpacity>
+			<TouchableOpacity onPress={() => getUser()}><Text>Fetch</Text></TouchableOpacity>
 		</SafeAreaView>
 	);
 };
