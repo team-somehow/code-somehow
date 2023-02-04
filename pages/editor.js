@@ -57,6 +57,7 @@ const EditorScreen = () => {
   }, [value]);
 
   const finalSubmit = () => {
+    console.log(answer)
     if (answer.length === 0 || ready.length === 0) return;
     const Buffer = require("buffer").Buffer;
     let encodedCode = new Buffer(answer).toString("base64");
@@ -192,27 +193,27 @@ const EditorScreen = () => {
           },
           ...(keyboard.keyboardShown ? { marginBottom: "auto" } : {}),
         }}
-        // onChange={(e) => {
-        //     console.log("before if", deleteText);
-        //     if (!deleteText) {
-        //       setDeleteText(true);
-        //       console.log("aaya");
-        //       return;
-        //     }
-        //     console.log("e", e);
-        //     console.log("this is ", answer);
-        //     setAnswer(e);
-
-        // }}
-        onKeyPress={(e) => {
-          // console.log("e", e);
-          if (e === "Backspace") {
-            setAnswer(answer.substr(0, answer.length - 1));
-            return;
-          }
-          // console.log("this is ", answer);
-          setAnswer(answer + e);
+        onChange={(e) => {
+            console.log("before if", deleteText);
+            // if (!deleteText) {
+            //   setDeleteText(true);
+            //   console.log("aaya");
+            //   return;
+            // }
+            console.log("e", e);
+            console.log("this is ", answer);
+            setAnswer(e);
         }}
+
+        // onKeyPress={(e) => {
+        //   // console.log("e", e);
+        //   if (e === "Backspace") {
+        //     setAnswer(answer.substr(0, answer.length - 1));
+        //     return;
+        //   }
+        //   // console.log("this is ", answer);
+        //   setAnswer(answer + e);
+        // }}
         language={ready}
         syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
         showLineNumbers
@@ -250,8 +251,20 @@ const EditorScreen = () => {
         <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")}>
           <Text fontSize="4">{"}"}</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")}>
+          <Text fontSize="4">{"("}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")}>
+          <Text fontSize="4">{")"}</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")}>
           <Text fontSize="4">{";"}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")}>
+          <Text fontSize="4">{"/"}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)}>
+          <Text fontSize="4">{'"'}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")}>
           <Text fontSize="4">{"TAB"}</Text>
