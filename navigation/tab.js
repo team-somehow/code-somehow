@@ -31,9 +31,9 @@ const TabNavigation = () => {
                 tabBarInactiveTintColor: '#d7e2ff',
                 lazy: 'false',
                 tabBarHideOnKeyboard: true,
-                tabBarStyle: { borderTopWidth: 0.2, paddingTop: 4, backgroundColor: '#16171a' },
+                tabBarStyle: { borderTopWidth: 0.2, paddingVertical: 8, backgroundColor: '#16171a', borderColor: '#4d4e59', height: 64, paddingBottom: 8 },
                 headerShown: false,
-                tabBarLabelStyle: { fontSize: 12, letterSpacing: -0.4 },
+                tabBarLabelStyle: { fontSize: 12, letterSpacing: 0.2 },
             }}>
             <Tab.Screen
                 name="Home"
@@ -78,7 +78,7 @@ const TabNavigation = () => {
                     ),
                 }} />
 
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="ProfileStack"
                 component={ProfileStack}
                 options={{
@@ -90,7 +90,7 @@ const TabNavigation = () => {
                             color={color}
                         />
                     ),
-                }} />
+                }} /> */}
         </Tab.Navigator>
     );
 }
