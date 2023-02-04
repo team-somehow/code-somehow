@@ -94,7 +94,12 @@ const EditorScreen = ({ navigation, route }) => {
                 showLineNumbers
             />
 
-            <TouchableOpacity onPress={() => {console.log(answer, value)}}>
+            <TouchableOpacity onPress={() => {
+                console.log(answer, value);
+                const Buffer = require("buffer").Buffer;
+                let encodedCode = new Buffer(answer).toString("base64");
+                console.log(encodedCode);
+                }}>
                 <Text style={{
                    ... {
                 fontSize: 20,
