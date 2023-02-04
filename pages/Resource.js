@@ -12,7 +12,6 @@ import documentations from "../constants/documentations";
 const Resource = () => {
   return (
     <View>
-      <Text>Resource</Text>
       <FlatList
         data={documentations}
         keyExtractor={(item) => item.id}

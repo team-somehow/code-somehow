@@ -7,3 +7,6 @@ def pypart(n):
 # Driver Code
 n = 5
 pypart(n)
+
+
+# write a program to print first 5 prime numbers in python
