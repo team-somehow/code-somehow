@@ -275,14 +275,20 @@ const EditorScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity onPress={finalSubmit}>
+
+
+    <View style={{
+        backgroundColor: "green",
+        padding:10,
+      }}>
+      <TouchableOpacity onPress={finalSubmit} >
         <Text
           style={{
             ...{
               fontSize: 25,
-              marginTop: -150,
+            //   marginTop: -150,
               color: "white",
-              fontWeight: 800,
+              fontWeight: "800",
             },
             ...(keyboard.keyboardShown ? { display: "none" } : {}),
           }}
@@ -290,6 +296,7 @@ const EditorScreen = () => {
           Submit Code
         </Text>
       </TouchableOpacity>
+      </View>
       </ScrollView>
     </SafeAreaView>
   );
