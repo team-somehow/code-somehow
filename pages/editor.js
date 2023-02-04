@@ -152,7 +152,7 @@ const EditorScreen = () => {
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>
+        <Text style={[{ color: '#9197AB', marginBottom: 4 }, isFocus && { color: "#D7E2FF", display: 'none' }]}>
           Programming Language
         </Text>
       );
@@ -163,16 +163,17 @@ const EditorScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        {renderLabel()}
         <View style={styles1.container}>
-          {renderLabel()}
           <Dropdown
-            style={[styles1.dropdown, isFocus && { borderColor: "blue" }]}
+            style={[styles1.dropdown, isFocus && { borderColor: "#D7E2FF" }]}
             placeholderStyle={styles1.placeholderStyle}
             selectedTextStyle={styles1.selectedTextStyle}
             inputSearchStyle={styles1.inputSearchStyle}
             iconStyle={styles1.iconStyle}
             data={data}
             search
+            itemContainerStyle={{backgroundColor: '#f1f2f3', borderWidth: 0.4, borderColor: '#9197AB', borderRadius: 8, color: "#D7E2FF"}}
             maxHeight={300}
             labelField="label"
             valueField="value"
@@ -259,9 +260,9 @@ const EditorScreen = () => {
           style={{
             ...{
               flexDirection: "row",
-              width: width,
-              marginLeft: -width * 0.05,
-              backgroundColor: "white",
+              width: width - 48,
+              // marginLeft: -width * 0.05,
+              backgroundColor: "#121213",
               padding: 10,
               justifyContent: "space-around",
               display: "none"
@@ -276,34 +277,34 @@ const EditorScreen = () => {
               setAnswer(str);
             }}
           >
-            <Text fontSize="4">{"<"}</Text>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"<"}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setAnswer((prev) => prev + ">")}>
-            <Text fontSize="4">{">"}</Text>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{">"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "{")}>
-            <Text fontSize="4">{"{"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "{")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"{"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")}>
-            <Text fontSize="4">{"}"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"}"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")}>
-            <Text fontSize="4">{"("}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"("}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")}>
-            <Text fontSize="4">{")"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{")"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")}>
-            <Text fontSize="4">{";"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{";"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")}>
-            <Text fontSize="4">{"/"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"/"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)}>
-            <Text fontSize="4">{'"'}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{'"'}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")}>
-            <Text fontSize="4">{"TAB"}</Text>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")} style={{}}>
+            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"TAB"}</Text>
           </TouchableOpacity>
         </View>
 
@@ -440,8 +441,8 @@ const styles1 = StyleSheet.create({
   },
   dropdown: {
     height: 24,
-    borderColor: "gray",
-    borderWvalueth: 0.5,
+    borderColor: "#9197AB",
+    // borderWvalueth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
   },
@@ -450,7 +451,7 @@ const styles1 = StyleSheet.create({
   },
   label: {
     position: "absolute",
-    backgroundColor: "white",
+    // backgroundColor: "white",
     left: 22,
     top: 8,
     zIndex: 999,
@@ -459,17 +460,21 @@ const styles1 = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
+    color: '#9198AD'
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: '#D7E2FF'
   },
   iconStyle: {
-    wvalueth: 20,
-    height: 20,
+    // wvalueth: 24,
+    height: 24,
+    color: '#D7E2FF'
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    backgroundColor: '#f1f2f3'
   },
 });
 

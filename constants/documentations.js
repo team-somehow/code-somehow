@@ -34,4 +34,29 @@ export default documentations = [
     title: "Java Documentation",
     link: "https://docs.oracle.com/en/java/",
   },
+  {
+    id: 7,
+    title: "C Documentation",
+    link: "https://devdocs.io/c/",
+  },
+  {
+    id: 8,
+    title: "C++ Documentation",
+    link: "https://devdocs.io/cpp/",
+  },
+  {
+    id: 9,
+    title: "R Documentation",
+    link: "https://www.r-project.org/other-docs.html",
+  },
+  {
+    id: 10,
+    title: "Ruby Documentation",
+    link: "https://ruby-doc.org/",
+  },
+  {
+    id: 11,
+    title: "Rust Documentation",
+    link: "https://www.rust-lang.org/learn",
+  },
 ];
