@@ -73,8 +73,8 @@ const EditorScreen = () => {
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "c3db0a96eemsh1a6c423dc0d2339p14805fjsn27d104a551e9",
-        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+        'X-RapidAPI-Key': 'd9c008a226mshfa14a911cfe2a58p1298f2jsn3e4bd10a7367',
+        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
       },
       data:
         '{"language_id":' +
@@ -98,9 +98,8 @@ const EditorScreen = () => {
             response.data.token,
           params: { base64_encoded: "false", fields: "*" },
           headers: {
-            "X-RapidAPI-Key":
-              "c3db0a96eemsh1a6c423dc0d2339p14805fjsn27d104a551e9",
-            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+            'X-RapidAPI-Key': 'd9c008a226mshfa14a911cfe2a58p1298f2jsn3e4bd10a7367',
+            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
           },
         };
 
@@ -137,33 +136,33 @@ const EditorScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-    <ScrollView>
-      <View style={styles1.container}>
-        {renderLabel()}
-        <Dropdown
-          style={[styles1.dropdown, isFocus && { borderColor: "blue" }]}
-          placeholderStyle={styles1.placeholderStyle}
-          selectedTextStyle={styles1.selectedTextStyle}
-          inputSearchStyle={styles1.inputSearchStyle}
-          iconStyle={styles1.iconStyle}
-          data={data}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? "Select Programming Language" : "..."}
-          searchPlaceholder="Search..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={(item) => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-        />
-      </View>
+      <ScrollView>
+        <View style={styles1.container}>
+          {renderLabel()}
+          <Dropdown
+            style={[styles1.dropdown, isFocus && { borderColor: "blue" }]}
+            placeholderStyle={styles1.placeholderStyle}
+            selectedTextStyle={styles1.selectedTextStyle}
+            inputSearchStyle={styles1.inputSearchStyle}
+            iconStyle={styles1.iconStyle}
+            data={data}
+            search
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={!isFocus ? "Select Programming Language" : "..."}
+            searchPlaceholder="Search..."
+            value={value}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={(item) => {
+              setValue(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
 
-      {/* {submitted && (
+        {/* {submitted && (
         <View style={styles2.centeredView}>
           <Modal
             animationType="slide"
@@ -189,19 +188,20 @@ const EditorScreen = () => {
         </View>
       )} */}
 
-      {/* <View value={answer}> */}
-      <CodeEditor
-        style={{
-          ...{
-            fontSize: 18,
-            inputLineHeight: 26,
-            highlighterLineHeight: 26,
-            marginBottom: 100,
-            height: 500
-          },
-          ...(keyboard.keyboardShown ? { marginBottom: "auto", height: 260 } : {}),
-        }}
-        onChange={(e) => {
+        {/* <View value={answer}> */}
+        <CodeEditor
+          style={{
+            ...{
+              fontSize: 18,
+              inputLineHeight: 26,
+              highlighterLineHeight: 26,
+              marginBottom: 32,
+              height: 440,
+              backgroundColor: '#202226'
+            },
+            ...(keyboard.keyboardShown ? { marginBottom: "auto", height: 260 } : {}),
+          }}
+          onChange={(e) => {
             // console.log("before if", deleteText);
             // if (!deleteText) {
             //   setDeleteText(true);
@@ -211,108 +211,190 @@ const EditorScreen = () => {
             // console.log("e", e);
             // console.log("this is ", answer);
             setAnswer(e);
-        }}
+          }}
 
-        // onKeyPress={(e) => {
-        //   // console.log("e", e);
-        //   if (e === "Backspace") {
-        //     setAnswer(answer.substr(0, answer.length - 1));
-        //     return;
-        //   }
-        //   // console.log("this is ", answer);
-        //   setAnswer(answer + e);
-        // }}
-        language={ready}
-        syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
-        showLineNumbers
-        v={answer}
-      />
-      {/* </View> */}
+          // onKeyPress={(e) => {
+          //   // console.log("e", e);
+          //   if (e === "Backspace") {
+          //     setAnswer(answer.substr(0, answer.length - 1));
+          //     return;
+          //   }
+          //   // console.log("this is ", answer);
+          //   setAnswer(answer + e);
+          // }}
+          language={ready}
+          syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
+          showLineNumbers
+          v={answer}
+        />
+        {/* </View> */}
 
-      <View
-        style={{
-          ...{
-            flexDirection: "row",
-            width: width,
-            marginLeft: -width * 0.05,
-            backgroundColor: "white",
-            padding: 10,
-            justifyContent: "space-around",
-            display: "none"
-          },
-          ...(keyboard.keyboardShown ? { display: "flex" } : {})
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => {
-            const str = answer + "<";
-            console.log("chala");
-            setAnswer(str);
+        <View
+          style={{
+            ...{
+              flexDirection: "row",
+              width: width,
+              marginLeft: -width * 0.05,
+              backgroundColor: "white",
+              padding: 10,
+              justifyContent: "space-around",
+              display: "none"
+            },
+            ...(keyboard.keyboardShown ? { display: "flex" } : {})
           }}
         >
-          <Text fontSize="4">{"<"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + ">")}>
-          <Text fontSize="4">{">"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "{")}>
-          <Text fontSize="4">{"{"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")}>
-          <Text fontSize="4">{"}"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")}>
-          <Text fontSize="4">{"("}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")}>
-          <Text fontSize="4">{")"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")}>
-          <Text fontSize="4">{";"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")}>
-          <Text fontSize="4">{"/"}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)}>
-          <Text fontSize="4">{'"'}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")}>
-          <Text fontSize="4">{"TAB"}</Text>
-        </TouchableOpacity>
-      </View>
-
-
-
-        <View style={{
-            backgroundColor: "green",
-            padding:10,
-            marginBottom: 30
-        }}>
-        <TouchableOpacity onPress={finalSubmit} >
-            <Text
-            style={{
-                ...{
-                fontSize: 25,
-                color: "white",
-                fontWeight: "800",
-                },
-                ...(keyboard.keyboardShown ? { display: "none" } : {}),
+          <TouchableOpacity
+            onPress={() => {
+              const str = answer + "<";
+              console.log("chala");
+              setAnswer(str);
             }}
-            >
-            Submit Code
-            </Text>
-        </TouchableOpacity>
+          >
+            <Text fontSize="4">{"<"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ">")}>
+            <Text fontSize="4">{">"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "{")}>
+            <Text fontSize="4">{"{"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")}>
+            <Text fontSize="4">{"}"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")}>
+            <Text fontSize="4">{"("}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")}>
+            <Text fontSize="4">{")"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")}>
+            <Text fontSize="4">{";"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")}>
+            <Text fontSize="4">{"/"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)}>
+            <Text fontSize="4">{'"'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")}>
+            <Text fontSize="4">{"TAB"}</Text>
+          </TouchableOpacity>
         </View>
 
-      { submitted && (
-        <View style={styles2.centeredView}>
-            <Text style={styles2.textview}>Output: {output}</Text>
-            <Text style={styles2.textview}>Time: {time}s</Text>
-            <Text style={styles2.textview}>Memory: {memory}bytes</Text>
-            <Text style={styles2.textview}>Submission ID: {token}</Text>
-        </View>
-      )}
-        
+
+
+
+        <TouchableOpacity onPress={finalSubmit} style={{ borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' }}>
+          <Text
+            style={{
+              ...{
+                color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
+              },
+              ...(keyboard.keyboardShown ? { display: "none" } : {}),
+            }}
+          >
+            Submit Code
+          </Text>
+        </TouchableOpacity>
+
+        {submitted && (
+          <>
+            <View style={{
+              backgroundColor: "#202226",
+              padding: 16,
+              width: "100%",
+              borderRadius: 16,
+              elevation: 4,
+              marginVertical: 16,
+              borderWidth: 0.8,
+              borderColor: '#25ff88'
+            }}>
+
+              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 16, marginBottom: 4, fontFamily: 'monospace' }}>Output:</Text>
+              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 18, fontFamily: 'monospace' }}>{output}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "#202226",
+                  padding: 16,
+                  width: "48%",
+                  borderRadius: 8,
+                  elevation: 64,
+                  marginBottom: 16,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    color: "#4E9CFE",
+                    fontSize: 24,
+                    fontWeight: "900",
+                    marginBottom: 2,
+                  }}
+                >
+                  {time}
+                </Text>
+                <Text
+                  style={{
+                    color: "#D7E2FF",
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginBottom: 4,
+                    textAlign: "center",
+                  }}
+                >
+                  {`Time (in secs)`}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  backgroundColor: "#202226",
+                  padding: 16,
+                  width: "48%",
+                  borderRadius: 8,
+                  elevation: 64,
+                  marginBottom: 16,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    color: "#4E9CFE",
+                    fontSize: 24,
+                    fontWeight: "900",
+                    marginBottom: 2,
+                  }}
+                >
+                  {memory}
+                </Text>
+                <Text
+                  style={{
+                    color: "#D7E2FF",
+                    fontSize: 16,
+                    fontWeight: "600",
+                    marginBottom: 4,
+                    textAlign: "center",
+                  }}
+                >
+                  {`Memory (in bytes)`}
+                </Text>
+              </View>
+            </View>
+            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Submission ID:</Text>
+            <Text style={{ color: '#D7E2FF', fontWeight: '400', fontSize: 16, marginBottom: 16 }} selectable>{token}</Text>
+          </>
+        )}
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -328,13 +410,13 @@ const styles = StyleSheet.create({
 
 const styles1 = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#202226",
     padding: 13,
     marginBottom: 15,
     borderRadius: 10,
   },
   dropdown: {
-    height: 30,
+    height: 24,
     borderColor: "gray",
     borderWvalueth: 0.5,
     borderRadius: 8,
@@ -371,9 +453,10 @@ const styles1 = StyleSheet.create({
 const styles2 = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
+    // justifyContent: "center",
+    // alignItems: "center",
+    marginTop: 24,
+    width: '100%'
   },
   textview: {
     color: "white",
