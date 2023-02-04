@@ -5,6 +5,7 @@ import { enableScreens } from 'react-native-screens';
 enableScreens();
 
 import PracticeScreen from '../pages/practice';
+import Problem from '../pages/Problem';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,14 @@ function PracticeStack() {
                 component={PracticeScreen}
                 options={{
                     title: 'My Profile',
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Problem"
+                component={Problem}
+                options={{
+                    title: 'Problem',
                     headerShown: false
                 }}
             />
