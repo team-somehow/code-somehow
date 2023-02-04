@@ -95,11 +95,11 @@ const HomeScreen = ({ navigation, route }) => {
 				<View style={{ width: '100%', borderRadius: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' ,marginBottom: 16 }}>
 					<Text style={{ fontSize: 24, fontWeight: '800', letterSpacing: 1.8, color: "#D7E2FF"}}>Any Kode</Text>
 					<View style={{flexDirection: 'row'}}>
-						<TouchableOpacity onPress={() => console.log("LinkedIN")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
+						<TouchableOpacity onPress={() => navigation.navigate("Chat")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
 							<Ionicons name="ios-chatbox-outline" size={24} color="#D7E2FF" />
 						</TouchableOpacity>
 
-						<TouchableOpacity onPress={() => console.log("LinkedIN")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
+						<TouchableOpacity onPress={() => navigation.navigate("Resource")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
 							<Ionicons name="documents-outline" size={24} color="#D7E2FF" />
 						</TouchableOpacity>
 					</View>
