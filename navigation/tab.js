@@ -14,7 +14,7 @@ import HomeScreen from '../pages/home';
 import EditorScreen from '../pages/editor';
 
 import ProfileStack from './profileStack';
-import HackStack from './hacakthonStack';
+// import HackStack from './hacakthonStack';
 import PracticeStack from './practiceStack';
 
 const Tab = createBottomTabNavigator();
@@ -48,7 +48,7 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="HackStack"
                 component={HackStack}
                 options={{
@@ -56,7 +56,7 @@ const TabNavigation = () => {
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="code" size={size} color={color} />
                     ),
-                }} />
+                }} /> */}
             <Tab.Screen
                 name="Editor"
                 component={EditorScreen}
