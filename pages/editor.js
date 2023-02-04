@@ -58,6 +58,27 @@ const EditorScreen = () => {
     }
   }, [value]);
 
+  const storeUser = async (value) => {
+		try {
+			await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
+			console.log("Saved")
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	// getting data
+	const getUser = async () => {
+		try {
+			const userData = await JSON.parse(await AsyncStorage.getItem("savedProbsMock"));
+      if (userData===null) return [];
+			return userData;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+
   const finalSubmit = () => {
     console.log(answer)
     if (answer.length === 0 || ready.length === 0) return;
@@ -90,6 +111,10 @@ const EditorScreen = () => {
       .request(options)
       .then(function (response) {
         // console.log(response.data);
+
+        let userData = getUser();
+        userData.push(response.data.token);
+        storeUser(userData);
 
         const options1 = {
           method: "GET",
