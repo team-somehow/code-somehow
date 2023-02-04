@@ -42,9 +42,12 @@ const EditorScreen = () => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [ready, setReady] = useState("");
+  const [deleteText, setDeleteText] = useState(true);
 
   useEffect(() => {
     for (var i = 0; i < data.length; ++i) {
+      // console.log(data[i].value);
+      // console.log(value)
       if (data[i].value === value) {
         console.log(data[i]);
         setReady(data[i].ready);
@@ -178,6 +181,7 @@ const EditorScreen = () => {
         </View>
       )}
 
+      {/* <View value={answer}> */}
       <CodeEditor
         style={{
           ...{
@@ -188,14 +192,34 @@ const EditorScreen = () => {
           },
           ...(keyboard.keyboardShown ? { marginBottom: "auto" } : {}),
         }}
-        onChange={(e) => {
-          setAnswer(e);
+        // onChange={(e) => {
+        //     console.log("before if", deleteText);
+        //     if (!deleteText) {
+        //       setDeleteText(true);
+        //       console.log("aaya");
+        //       return;
+        //     }
+        //     console.log("e", e);
+        //     console.log("this is ", answer);
+        //     setAnswer(e);
+
+        // }}
+        onKeyPress={(e) => {
+          // console.log("e", e);
+          if (e === "Backspace") {
+            setAnswer(answer.substr(0, answer.length - 1));
+            return;
+          }
+          // console.log("this is ", answer);
+          setAnswer(answer + e);
         }}
         language={ready}
-        value={answer}
         syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
         showLineNumbers
+        v={answer}
       />
+      {/* </View> */}
+
       <View
         style={{
           ...{
@@ -208,7 +232,13 @@ const EditorScreen = () => {
           },
         }}
       >
-        <TouchableOpacity onPress={() => setAnswer((prev) => prev + "<")}>
+        <TouchableOpacity
+          onPress={() => {
+            const str = answer + "<";
+            console.log("chala");
+            setAnswer(str);
+          }}
+        >
           <Text fontSize="4">{"<"}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setAnswer((prev) => prev + ">")}>
