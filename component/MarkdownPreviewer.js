@@ -8,7 +8,6 @@ export default function MarkdowPreviewer({data}) {
 	return (
 		<View>
 			<Markdown>{data}</Markdown>
-			<Text>markdowPreviewer</Text>
 		</View>
 	);
 }

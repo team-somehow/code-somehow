@@ -45,8 +45,6 @@ const EditorScreen = () => {
 
   useEffect(() => {
     for (var i = 0; i < data.length; ++i) {
-      // console.log(data[i].value);
-      // console.log(value)
       if (data[i].value === value) {
         console.log(data[i]);
         setReady(data[i].ready);
