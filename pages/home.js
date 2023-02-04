@@ -29,7 +29,7 @@ import {
 const { width, height } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation, route }) => {
-	const dataRings = {
+	const dataRings = { 
 		labels: ["Easy", "Medium", "Hard"], // optional
 		data: [0.4, 0.6, 0.8]
 	};
@@ -92,6 +92,18 @@ const HomeScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={{ width: width - 48 }}>
+				<View style={{ width: '100%', borderRadius: 8, elevation: 64, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' ,marginBottom: 16 }}>
+					<Text style={{ fontSize: 24, fontWeight: '800', letterSpacing: 1.8, color: "#D7E2FF"}}>Any Kode</Text>
+					<View style={{flexDirection: 'row'}}>
+						<TouchableOpacity onPress={() => console.log("LinkedIN")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
+							<Ionicons name="ios-chatbox-outline" size={24} color="#D7E2FF" />
+						</TouchableOpacity>
+
+						<TouchableOpacity onPress={() => console.log("LinkedIN")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
+							<Ionicons name="documents-outline" size={24} color="#D7E2FF" />
+						</TouchableOpacity>
+					</View>
+				</View>
 				<View style={{ backgroundColor: '#202226', padding: 16, width: '100%', borderRadius: 8, elevation: 64, flexDirection: 'row', marginBottom: 16 }}>
 					<Image source={{ uri: 'https://source.unsplash.com/random/?profile/' }} style={{ height: 64, width: 64, borderRadius: 100, marginRight: 20 }} />
 					<View style={{ width: '70%' }}>
@@ -141,7 +153,7 @@ const HomeScreen = ({ navigation, route }) => {
 
 				<ProgressChart
 					data={dataRings}
-					width={width-56}
+					width={width - 56}
 					height={220}
 					strokeWidth={16}
 					radius={32}
