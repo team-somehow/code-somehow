@@ -131,6 +131,7 @@ const EditorScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    <ScrollView>
       <View style={styles1.container}>
         {renderLabel()}
         <Dropdown
@@ -190,18 +191,19 @@ const EditorScreen = () => {
             inputLineHeight: 26,
             highlighterLineHeight: 26,
             marginBottom: 180,
+            height: 500
           },
-          ...(keyboard.keyboardShown ? { marginBottom: "auto" } : {}),
+          ...(keyboard.keyboardShown ? { marginBottom: "auto", height: 260 } : {}),
         }}
         onChange={(e) => {
-            console.log("before if", deleteText);
+            // console.log("before if", deleteText);
             // if (!deleteText) {
             //   setDeleteText(true);
             //   console.log("aaya");
             //   return;
             // }
-            console.log("e", e);
-            console.log("this is ", answer);
+            // console.log("e", e);
+            // console.log("this is ", answer);
             setAnswer(e);
         }}
 
@@ -230,7 +232,9 @@ const EditorScreen = () => {
             backgroundColor: "white",
             padding: 10,
             justifyContent: "space-around",
+            display: "none"
           },
+          ...(keyboard.keyboardShown ? { display: "flex" } : {})
         }}
       >
         <TouchableOpacity
@@ -275,15 +279,18 @@ const EditorScreen = () => {
         <Text
           style={{
             ...{
-              fontSize: 20,
+              fontSize: 25,
               marginTop: -150,
+              color: "white",
+              fontWeight: 800,
             },
             ...(keyboard.keyboardShown ? { display: "none" } : {}),
           }}
         >
-          Submit
+          Submit Code
         </Text>
       </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -292,7 +299,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: "#eaeaea",
+    backgroundColor: "#16171a",
   },
 });
 
