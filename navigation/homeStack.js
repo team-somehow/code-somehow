@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 export default function HomeStack() {
 	return (
 		<Stack.Navigator
-			initialRouteName="Chat"
+			initialRouteName="Home"
 			screenOptions={{
 				headerStyle: { backgroundColor: "#fff" },
 				headerTintColor: "#000",
