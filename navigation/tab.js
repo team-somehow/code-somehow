@@ -13,6 +13,8 @@ import HomeScreen from '../pages/home';
 import HackScreen from '../pages/hack';
 import EditorScreen from '../pages/editor';
 
+import ProfileStack from './profilestack';
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
@@ -70,11 +72,11 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
-            {/* <Tab.Screen
+            <Tab.Screen
                 name="ProfileStack"
                 component={ProfileStack}
                 options={{
-                    tabBarLabel: 'Store',
+                    tabBarLabel: 'My Profile',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons
                             name="storefront-outline"
@@ -83,6 +85,7 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
+            {/*
             <Tab.Screen
                 name="MyAccount"
                 component={MyAccountScreen}
