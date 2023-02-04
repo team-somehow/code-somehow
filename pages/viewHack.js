@@ -23,7 +23,10 @@ const { width, height } = Dimensions.get("window");
 const HackScreen = ({ navigation, route }) => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Hack HackScreen</Text>
+            <Text>HackScreen</Text>
+            <TouchableOpacity onPress={()=> navigation.navigate('HackDetail')}>
+                <Text>Hack In Detail</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

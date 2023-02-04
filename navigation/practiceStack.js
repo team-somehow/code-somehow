@@ -4,15 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { enableScreens } from 'react-native-screens';
 enableScreens();
 
-import ProfileScreen from '../pages/p';
-import EditProfileScreen from '../pages/editProfile';
+import PracticeScreen from '../pages/practice';
 
 const Stack = createStackNavigator();
 
-function ProfileStack() {
+function PracticeStack() {
     return (
         <Stack.Navigator
-            initialRouteName="Profile"
+            initialRouteName="Practice"
             screenOptions={{
                 headerStyle: { backgroundColor: '#fff' },
                 headerTintColor: '#000',
@@ -20,21 +19,21 @@ function ProfileStack() {
                 headerBackTitle: ' ',
             }}>
             <Stack.Screen
-                name="Profile"
-                component={ProfileScreen}
+                name="Practice"
+                component={PracticeScreen}
                 options={{
                     title: 'My Profile',
                     headerShown: false
                 }}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
                 name="EditProfile"
                 component={EditProfileScreen}
                 options={{
                     title: 'Edit Profile',
                     headerShown: false
                 }}
-            />
+            /> */}
             {/* <Stack.Screen
                 name="Notifications"
                 component={NotificationsScreen}
@@ -47,4 +46,4 @@ function ProfileStack() {
     );
 }
 
-export default ProfileStack;
+export default PracticeStack;

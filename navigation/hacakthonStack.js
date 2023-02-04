@@ -4,15 +4,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { enableScreens } from 'react-native-screens';
 enableScreens();
 
-import ProfileScreen from '../pages/p';
-import EditProfileScreen from '../pages/editProfile';
+import HackScreen from '../pages/viewHack';
+import HackInDetailScreen from '../pages/hackInDetail';
 
 const Stack = createStackNavigator();
 
-function ProfileStack() {
+function HackStack() {
     return (
         <Stack.Navigator
-            initialRouteName="Profile"
+            initialRouteName="Hackathon "
             screenOptions={{
                 headerStyle: { backgroundColor: '#fff' },
                 headerTintColor: '#000',
@@ -20,16 +20,16 @@ function ProfileStack() {
                 headerBackTitle: ' ',
             }}>
             <Stack.Screen
-                name="Profile"
-                component={ProfileScreen}
+                name="Hackathon"
+                component={HackScreen}
                 options={{
-                    title: 'My Profile',
+                    title: 'Hackathon',
                     headerShown: false
                 }}
             />
             <Stack.Screen
-                name="EditProfile"
-                component={EditProfileScreen}
+                name="HackDetail"
+                component={HackInDetailScreen}
                 options={{
                     title: 'Edit Profile',
                     headerShown: false
@@ -47,4 +47,4 @@ function ProfileStack() {
     );
 }
 
-export default ProfileStack;
+export default HackStack;

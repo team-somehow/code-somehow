@@ -19,14 +19,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
-import MarkdowPreviewer from "../component/MarkdownPreviewer";
-
-// const copy = `# h1 Heading 8-)
-
-// **This is some bold text!**
-
-// This is normal text
-// `;
 
 const HomeScreen = ({ navigation, route }) => {
 	return (

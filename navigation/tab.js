@@ -8,12 +8,14 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import HomeScreen from '../pages/home';
-import HackScreen from '../pages/hack';
 import EditorScreen from '../pages/editor';
 
-import ProfileStack from './profilestack';
+import ProfileStack from './profileStack';
+import HackStack from './hacakthonStack';
+import PracticeStack from './practiceStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,14 +24,14 @@ const TabNavigation = () => {
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={{
-                tabBarActiveTintColor: '#ff4411',
-                // inactiveBackgroundColor: '#fffaed',
-                // activeBackgroundColor: '#fffaed',
-                tabBarBackgroundColor: '#fffefd',
-                tabBarInactiveTintColor: '#565656',
+                tabBarActiveTintColor: '#FFB188',
+                // inactiveBackgroundColor: '#16171a',
+                // activeBackgroundColor: '#16171a',
+                tabBarBackgroundColor: '#16171a',
+                tabBarInactiveTintColor: '#d7e2ff',
                 lazy: 'false',
                 tabBarHideOnKeyboard: true,
-                tabBarStyle: { borderTopWidth: 0.2, paddingTop: 4, backgroundColor: '#f9f9f9' },
+                tabBarStyle: { borderTopWidth: 0.2, paddingTop: 4, backgroundColor: '#16171a' },
                 headerShown: false,
                 tabBarLabelStyle: { fontSize: 12, letterSpacing: -0.4 },
             }}>
@@ -42,21 +44,17 @@ const TabNavigation = () => {
                         <Feather
                             name="home"
                             color={color}
-                            size={size + 2}
+                            size={size}
                         />
                     ),
                 }} />
             <Tab.Screen
                 name="HackStack"
-                component={HackScreen}
+                component={HackStack}
                 options={{
                     tabBarLabel: 'Hackthons',
                     tabBarIcon: ({ color, size }) => (
-                        <Feather
-                            name="box"
-                            size={size + 2}
-                            color={color}
-                        />
+                        <FontAwesome name="code" size={size} color={color} />
                     ),
                 }} />
             <Tab.Screen
@@ -65,32 +63,26 @@ const TabNavigation = () => {
                 options={{
                     tabBarLabel: 'Editor',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign
-                            name="appstore-o"
-                            color={color}
-                            size={size + 2}
-                        />
+                        // <FontAwesome5 name="laptop-code" size={size} color={color} />
+                        <AntDesign name="codesquareo" size={size} color={color} />
                     ),
                 }} />
+
+            <Tab.Screen
+                name="PracticeTab"
+                component={PracticeStack}
+                options={{
+                    tabBarLabel: 'Practice',
+                    tabBarIcon: ({ color, size }) => (
+                        <AntDesign name="book" size={size} color={color} />
+                    ),
+                }} />
+
             <Tab.Screen
                 name="ProfileStack"
                 component={ProfileStack}
                 options={{
                     tabBarLabel: 'My Profile',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons
-                            name="storefront-outline"
-                            color={color}
-                            size={size + 6}
-                        />
-                    ),
-                }} />
-            {/*
-            <Tab.Screen
-                name="MyAccount"
-                component={MyAccountScreen}
-                options={{
-                    tabBarLabel: 'Account',
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome
                             name="user-o"
@@ -98,7 +90,7 @@ const TabNavigation = () => {
                             color={color}
                         />
                     ),
-                }} /> */}
+                }} />
         </Tab.Navigator>
     );
 }
