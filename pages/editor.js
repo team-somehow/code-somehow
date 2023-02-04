@@ -38,11 +38,13 @@ const EditorScreen = () => {
   const [answer, setAnswer] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [output, setOutput] = useState("");
+  const [time, setTime] = useState("");
+  const [memory, setMemory] = useState("");
+  const [token, setToken] = useState("");
 
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [ready, setReady] = useState("");
-  const [deleteText, setDeleteText] = useState(true);
 
   useEffect(() => {
     for (var i = 0; i < data.length; ++i) {
@@ -107,7 +109,11 @@ const EditorScreen = () => {
           .then(function (res) {
             setSubmitted(true);
             console.log(res.data.stdout);
+            // console.log(res.data);
             setOutput(res.data.stdout);
+            setTime(res.data.time);
+            setToken(res.data.token);
+            setMemory(res.data.memory);
           })
           .catch(function (error) {
             console.error(error);
@@ -157,7 +163,7 @@ const EditorScreen = () => {
         />
       </View>
 
-      {submitted && (
+      {/* {submitted && (
         <View style={styles2.centeredView}>
           <Modal
             animationType="slide"
@@ -181,7 +187,7 @@ const EditorScreen = () => {
             </View>
           </Modal>
         </View>
-      )}
+      )} */}
 
       {/* <View value={answer}> */}
       <CodeEditor
@@ -190,7 +196,7 @@ const EditorScreen = () => {
             fontSize: 18,
             inputLineHeight: 26,
             highlighterLineHeight: 26,
-            marginBottom: 180,
+            marginBottom: 100,
             height: 500
           },
           ...(keyboard.keyboardShown ? { marginBottom: "auto", height: 260 } : {}),
@@ -277,26 +283,36 @@ const EditorScreen = () => {
 
 
 
-    <View style={{
-        backgroundColor: "green",
-        padding:10,
-      }}>
-      <TouchableOpacity onPress={finalSubmit} >
-        <Text
-          style={{
-            ...{
-              fontSize: 25,
-            //   marginTop: -150,
-              color: "white",
-              fontWeight: "800",
-            },
-            ...(keyboard.keyboardShown ? { display: "none" } : {}),
-          }}
-        >
-          Submit Code
-        </Text>
-      </TouchableOpacity>
-      </View>
+        <View style={{
+            backgroundColor: "green",
+            padding:10,
+            marginBottom: 30
+        }}>
+        <TouchableOpacity onPress={finalSubmit} >
+            <Text
+            style={{
+                ...{
+                fontSize: 25,
+                color: "white",
+                fontWeight: "800",
+                },
+                ...(keyboard.keyboardShown ? { display: "none" } : {}),
+            }}
+            >
+            Submit Code
+            </Text>
+        </TouchableOpacity>
+        </View>
+
+      { submitted && (
+        <View style={styles2.centeredView}>
+            <Text style={styles2.textview}>Output: {output}</Text>
+            <Text style={styles2.textview}>Time: {time}s</Text>
+            <Text style={styles2.textview}>Memory: {memory}bytes</Text>
+            <Text style={styles2.textview}>Submission ID: {token}</Text>
+        </View>
+      )}
+        
       </ScrollView>
     </SafeAreaView>
   );
@@ -359,41 +375,11 @@ const styles2 = StyleSheet.create({
     alignItems: "center",
     marginTop: 22,
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
+  textview: {
     color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
+    fontWeight: "700"
+  }
+
 });
 
 export default EditorScreen;
