@@ -91,8 +91,8 @@ const HomeScreen = ({ navigation, route }) => {
 	};
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView style={{ width: width - 48 }}>
-				<View style={{ width: '100%', borderRadius: 8, elevation: 64, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' ,marginBottom: 16 }}>
+			<ScrollView style={{ width: width - 48 }} showsVerticalScrollIndicator={false}>
+				<View style={{ width: '100%', borderRadius: 8, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' ,marginBottom: 16 }}>
 					<Text style={{ fontSize: 24, fontWeight: '800', letterSpacing: 1.8, color: "#D7E2FF"}}>Any Kode</Text>
 					<View style={{flexDirection: 'row'}}>
 						<TouchableOpacity onPress={() => console.log("LinkedIN")} style={{ padding: 8, alignItems: 'center', justifyContent: 'center', height: 40, width: 40 }}>
