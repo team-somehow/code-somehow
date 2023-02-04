@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import HomeScreen from '../pages/home';
 import EditorScreen from '../pages/editor';
@@ -23,14 +24,14 @@ const TabNavigation = () => {
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={{
-                tabBarActiveTintColor: '#ff4411',
-                // inactiveBackgroundColor: '#fffaed',
-                // activeBackgroundColor: '#fffaed',
-                tabBarBackgroundColor: '#fffefd',
-                tabBarInactiveTintColor: '#565656',
+                tabBarActiveTintColor: '#FFB188',
+                // inactiveBackgroundColor: '#16171a',
+                // activeBackgroundColor: '#16171a',
+                tabBarBackgroundColor: '#16171a',
+                tabBarInactiveTintColor: '#d7e2ff',
                 lazy: 'false',
                 tabBarHideOnKeyboard: true,
-                tabBarStyle: { borderTopWidth: 0.2, paddingTop: 4, backgroundColor: '#f9f9f9' },
+                tabBarStyle: { borderTopWidth: 0.2, paddingTop: 4, backgroundColor: '#16171a' },
                 headerShown: false,
                 tabBarLabelStyle: { fontSize: 12, letterSpacing: -0.4 },
             }}>
@@ -43,7 +44,7 @@ const TabNavigation = () => {
                         <Feather
                             name="home"
                             color={color}
-                            size={size + 2}
+                            size={size}
                         />
                     ),
                 }} />
@@ -53,11 +54,7 @@ const TabNavigation = () => {
                 options={{
                     tabBarLabel: 'Hackthons',
                     tabBarIcon: ({ color, size }) => (
-                        <Feather
-                            name="box"
-                            size={size + 2}
-                            color={color}
-                        />
+                        <FontAwesome name="code" size={size} color={color} />
                     ),
                 }} />
             <Tab.Screen
@@ -66,11 +63,8 @@ const TabNavigation = () => {
                 options={{
                     tabBarLabel: 'Editor',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign
-                            name="appstore-o"
-                            color={color}
-                            size={size + 2}
-                        />
+                        // <FontAwesome5 name="laptop-code" size={size} color={color} />
+                        <AntDesign name="codesquareo" size={size} color={color} />
                     ),
                 }} />
 
@@ -80,11 +74,7 @@ const TabNavigation = () => {
                 options={{
                     tabBarLabel: 'Practice',
                     tabBarIcon: ({ color, size }) => (
-                        <FontAwesome
-                            name="user-o"
-                            size={size + 1}
-                            color={color}
-                        />
+                        <AntDesign name="book" size={size} color={color} />
                     ),
                 }} />
 

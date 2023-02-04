@@ -10,9 +10,9 @@ export default props => {
   return (
     <>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light"
         hidden={false}
-        backgroundColor="#fff"
+        backgroundColor="#16171a"
         translucent={false}
         networkActivityIndicatorVisible={true}
       />
