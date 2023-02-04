@@ -10,10 +10,11 @@ import { Feather } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 import HomeScreen from '../pages/home';
-import HackScreen from '../pages/hack';
 import EditorScreen from '../pages/editor';
 
-import ProfileStack from './profilestack';
+import ProfileStack from './profileStack';
+import HackStack from './hacakthonStack';
+import PracticeStack from './practiceStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -48,7 +49,7 @@ const TabNavigation = () => {
                 }} />
             <Tab.Screen
                 name="HackStack"
-                component={HackScreen}
+                component={HackStack}
                 options={{
                     tabBarLabel: 'Hackthons',
                     tabBarIcon: ({ color, size }) => (
@@ -72,25 +73,12 @@ const TabNavigation = () => {
                         />
                     ),
                 }} />
+
             <Tab.Screen
-                name="ProfileStack"
-                component={ProfileStack}
+                name="PracticeTab"
+                component={PracticeStack}
                 options={{
-                    tabBarLabel: 'My Profile',
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons
-                            name="storefront-outline"
-                            color={color}
-                            size={size + 6}
-                        />
-                    ),
-                }} />
-            {/*
-            <Tab.Screen
-                name="MyAccount"
-                component={MyAccountScreen}
-                options={{
-                    tabBarLabel: 'Account',
+                    tabBarLabel: 'Practice',
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome
                             name="user-o"
@@ -98,7 +86,21 @@ const TabNavigation = () => {
                             color={color}
                         />
                     ),
-                }} /> */}
+                }} />
+
+            <Tab.Screen
+                name="ProfileStack"
+                component={ProfileStack}
+                options={{
+                    tabBarLabel: 'My Profile',
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome
+                            name="user-o"
+                            size={size + 1}
+                            color={color}
+                        />
+                    ),
+                }} />
         </Tab.Navigator>
     );
 }
