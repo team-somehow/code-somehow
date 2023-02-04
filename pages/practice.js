@@ -17,89 +17,81 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { width, height } = Dimensions.get("window");
 
-const dummyData = [
-	{
-		id: 1,
-		title: "Presents",
-		difficulty: 100,
-		question: `# Foobar
-
-        Foobar is a Python library for dealing with word pluralization.
-        
-        ## Installation
-        
-        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-        
-        `,
-	},
-	{
-		id: 2,
-		title: "Presents",
-		difficulty: 200,
-		question: `# Foobar
-
-        Foobar is a Python library for dealing with word pluralization.
-        
-        ## Installation
-        
-        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-        
-        `,
-	},
-	{
-		id: 3,
-		title: "Presents",
-		difficulty: 100,
-		question: `# Foobar
-
-        Foobar is a Python library for dealing with word pluralization.
-        
-        ## Installation
-        
-        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-        
-        `,
-	},
-];
+import problemStatments from "../constants/data";
 
 const Item = ({ title, navigation, difficulty, item }) => (
-	<TouchableOpacity onPress={() => navigation.navigate("Problem", item)}>
-		<View>
-			<Text>{title}</Text>
-			<Text>{difficulty}</Text>
+	<TouchableOpacity
+		onPress={() => navigation.navigate("Problem", { ...item })}
+		style={{
+			backgroundColor: "#363940",
+			padding: 12,
+			marginBottom: 16,
+			borderRadius: 8,
+			flexDirection: "row",
+			justifyContent: "space-between",
+			alignItems: "center",
+			// flexWrap: "wrap",
+		}}
+	>
+		<Text
+			style={{
+				color: "#D7E2FF",
+				fontSize: 16,
+			}}
+		>
+			{title.substring(0, 15)} {title.length >= 15 && '...'}
+		</Text>
+		<View
+			style={{
+				backgroundColor: "#16171a",
+				padding: 8,
+				borderRadius: 6,
+			}}
+		>
+			<Text
+				style={{
+					color: "#D7E2FF",
+					fontSize: 12,
+				}}
+			>
+				Time limit -{item.time_limit_per_test}s
+			</Text>
 		</View>
 	</TouchableOpacity>
 );
 
 const PracticeScreen = ({ navigation, route }) => {
-	const storeUser = async (value) => {
-		try {
-			await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
-			console.log("Saved")
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	// getting data
-	const getUser = async () => {
-		try {
-			const userData = JSON.parse(await AsyncStorage.getItem("savedProbsMock"))
-			console.log(userData)
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text>Questions</Text>
+			<View
+				style={{
+					width: "100%",
+					borderRadius: 16,
+					flexDirection: "row",
+					justifyContent: "space-between",
+					alignItems: "center",
+					marginBottom: 32,
+					backgroundColor: "#363940",
+					padding: 8,
+				}}
+			>
+				<Text
+					style={{
+						fontSize: 32,
+						fontWeight: "800",
+						letterSpacing: 1.8,
+						color: "#D7E2FF",
+					}}
+				>
+					Questions
+				</Text>
+			</View>
 			<FlatList
-				data={dummyData}
+				data={problemStatments}
 				renderItem={({ item }) => (
 					<Item
 						title={item.title}
@@ -110,8 +102,6 @@ const PracticeScreen = ({ navigation, route }) => {
 				)}
 				keyExtractor={(item) => item.id}
 			></FlatList>
-			<TouchableOpacity onPress={() => storeUser(["uuid1", "uuid2"])}><Text>Store</Text></TouchableOpacity>
-			<TouchableOpacity onPress={() => getUser()}><Text>Fetch</Text></TouchableOpacity>
 		</SafeAreaView>
 	);
 };
@@ -120,7 +110,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 24,
-		backgroundColor: "#eaeaea",
+		backgroundColor: "#16171a",
+		// alignItems: "left",
 	},
 });
 

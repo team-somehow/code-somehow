@@ -123,3 +123,7 @@ const problemStatments = [
     ],
   },
 ];
+
+
+
+export default problemStatments
