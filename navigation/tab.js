@@ -17,6 +17,7 @@ import ProfileStack from "./profileStack";
 // import HackStack from './hacakthonStack';
 import PracticeStack from "./practiceStack";
 import HomeStack from "./homeStack";
+import MyCode from "../pages/MyCode";
 
 const Tab = createBottomTabNavigator();
 
@@ -86,11 +87,22 @@ const TabNavigation = () => {
 				}}
 			/>
 
+		<Tab.Screen
+				name="My Codes"
+				component={MyCode}
+				options={{
+					tabBarLabel: "My Codes",
+					tabBarIcon: ({ color, size }) => (
+						<AntDesign name="book" size={size} color={color} />
+					),
+				}}
+			/>
+
 			{/* <Tab.Screen
-                name="ProfileStack"
+                name="My Codes"
                 component={ProfileStack}
                 options={{
-                    tabBarLabel: 'My Profile',
+                    tabBarLabel: 'My Codes',
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome
                             name="user-o"
