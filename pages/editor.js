@@ -26,7 +26,7 @@ import { data } from '../constants/languages';
 
 const { width, height } = Dimensions.get("window");
 
-const EditorScreen = ({ navigation, route }) => {
+const EditorScreen = () => {
 
     const keyboard = useKeyboard();
     const insets = useSafeAreaInsets();
@@ -34,6 +34,13 @@ const EditorScreen = ({ navigation, route }) => {
 
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const [ready, setReady] = useState("");
+
+    useEffect(() => {
+        for (var i=0; i<data.length; ++i) {
+            if (data[i].value===value) {console.log(data[i]); setReady(data[i].ready); return;}
+        }
+    }, [value]);
   
     const renderLabel = () => {
       if (value || isFocus) {
@@ -89,16 +96,18 @@ const EditorScreen = ({ navigation, route }) => {
                         : {}),
                 }}
                 onChange={(e) => {setAnswer(e)}}
-                language="javascript"
+                language={ready}
                 syntaxStyle={CodeEditorSyntaxStyles.atomOneDark}
                 showLineNumbers
             />
 
             <TouchableOpacity onPress={() => {
-                console.log(answer, value);
+                // console.log(answer, value);
+                if (answer.length===0 || ready.length===0) return;
                 const Buffer = require("buffer").Buffer;
                 let encodedCode = new Buffer(answer).toString("base64");
-                console.log(encodedCode);
+                console.log(encodedCode, value);
+                console.log(ready)
                 }}>
                 <Text style={{
                    ... {
