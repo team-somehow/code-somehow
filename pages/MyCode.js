@@ -13,11 +13,8 @@ import {
 	FlatList,
 	Alert,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { SimpleLineIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CodeToken from "./CodeToken";
 
 const { width, height } = Dimensions.get("window");
 
@@ -38,33 +35,65 @@ const MyCode = ({ navigation, route }) => {
 
     useEffect(() => {
         const getInfo = async () => {
+			// console.log(await getUser());
             setData(await getUser());
         }
 		
         getInfo();
-        
     })
+	  
 
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text>My Submissions</Text>
+
+		<View style={styles1.container}>
+			<Text style={styles1.heading}>My Submissions</Text>
 			<FlatList
-				data={data}
-				renderItem={({ item }) => (
-					<Text>{item}</Text>
-				)}
-				keyExtractor={(item) => item.id}
-			></FlatList>
-		</SafeAreaView>
+			data={data}
+			keyExtractor={item => item}
+			renderItem={({ item })=> (
+				<CodeToken token={item}/>
+			)}
+			/>
+		</View>
+	
 	);
 };
 
-const styles = StyleSheet.create({
+
+const styles1 = StyleSheet.create({
 	container: {
-		flex: 1,
-		padding: 24,
-		backgroundColor: "#eaeaea",
+	  flex: 1,
+	  padding: 24,
+	  backgroundColor: "#16171a",
+	  // alignItems: "center",
 	},
-});
+	card: {
+	  backgroundColor: "#202226",
+	  padding: 8,
+	  paddingHorizontal: 24,
+	  flexDirection: 'row',
+	  alignItems: 'center',
+	  justifyContent: 'space-between',
+	  width: width - 48,
+	  borderRadius: 8,
+	  elevation: 6,
+	  flexDirection: "row",
+	  marginBottom: 16,
+	},
+	heading: {
+	  textAlign: 'left',
+	  color: "#D7E2FF",
+	  fontSize: 24,
+	  fontWeight: "600",
+	  letterSpacing: 0.8,
+	  marginBottom: 24,
+	},
+	linkTitle: {
+	  color: "#D7E2FF",
+	  marginVertical: 10,
+	  fontSize: 16,
+	},
+  });
+  
 
 export default MyCode;
