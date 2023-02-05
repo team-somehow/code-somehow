@@ -100,7 +100,7 @@ const EditorScreen = () => {
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "9cbec98f1bmsh3f71f7614c30463p14081cjsnf637c08bb9fa",
+        "X-RapidAPI-Key": "25c874290cmsh837021c8dfa2dbap12574ejsn1f6f99f3691f",
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data:
@@ -131,7 +131,7 @@ const EditorScreen = () => {
           params: { base64_encoded: "false", fields: "*" },
           headers: {
             "X-RapidAPI-Key":
-              "9cbec98f1bmsh3f71f7614c30463p14081cjsnf637c08bb9fa",
+              "25c874290cmsh837021c8dfa2dbap12574ejsn1f6f99f3691f",
             "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
           },
         };
