@@ -11,7 +11,7 @@ import {
   ScrollView,
   ImageBackground,
   FlatList,
-  Alert, 
+  Alert,
 } from "react-native";
 // import KeyboardListener from "react-native-keyboard-listener";
 // import { AntDesign } from "@expo/vector-icons";
@@ -27,9 +27,10 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { data } from "../constants/languages";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Modal, Pressable } from "react-native";
+// import ConfettiCannon from "react-native-confetti-cannon";
 
 const { width, height } = Dimensions.get("window");
 
@@ -63,27 +64,29 @@ const EditorScreen = () => {
   }, [value]);
 
   const storeUser = async (value) => {
-		try {
-			await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
-			console.log("Saved")
-		} catch (error) {
-			console.log(error);
-		}
-	};
+    try {
+      await AsyncStorage.setItem("savedProbsMock", JSON.stringify(value));
+      console.log("Saved");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-	// getting data
-	const getUser = async () => {
-		try {
-			const userData = await JSON.parse(await AsyncStorage.getItem("savedProbsMock"));
-      if (userData===null) return [];
-			return userData;
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  // getting data
+  const getUser = async () => {
+    try {
+      const userData = await JSON.parse(
+        await AsyncStorage.getItem("savedProbsMock")
+      );
+      if (userData === null) return [];
+      return userData;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const finalSubmit = () => {
-    console.log(answer)
+    console.log(answer);
     if (answer.length === 0 || ready.length === 0) return;
     const Buffer = require("buffer").Buffer;
     let encodedCode = new Buffer(answer).toString("base64");
@@ -97,8 +100,8 @@ const EditorScreen = () => {
       headers: {
         "content-type": "application/json",
         "Content-Type": "application/json",
-        'X-RapidAPI-Key': 'd9c008a226mshfa14a911cfe2a58p1298f2jsn3e4bd10a7367',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        "X-RapidAPI-Key": "9cbec98f1bmsh3f71f7614c30463p14081cjsnf637c08bb9fa",
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       data:
         '{"language_id":' +
@@ -127,8 +130,9 @@ const EditorScreen = () => {
             response.data.token,
           params: { base64_encoded: "false", fields: "*" },
           headers: {
-            'X-RapidAPI-Key': 'd9c008a226mshfa14a911cfe2a58p1298f2jsn3e4bd10a7367',
-            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+            "X-RapidAPI-Key":
+              "9cbec98f1bmsh3f71f7614c30463p14081cjsnf637c08bb9fa",
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
           },
         };
 
@@ -138,14 +142,16 @@ const EditorScreen = () => {
             // console.log(res.data.status.description);
             // console.log(res.data.stdout);
             setMemory(res.data.memory);
-            if (res.data?.status?.description!=null && res.data?.status?.description==="Accepted") {
-            setSubmitted(true);
-            setOutput(res.data.stdout);
-            setTime(res.data.time);
-            setToken(res.data.token);
-            setError(false);
-            }
-            else {
+            if (
+              res.data?.status?.description != null &&
+              res.data?.status?.description === "Accepted"
+            ) {
+              setSubmitted(true);
+              setOutput(res.data.stdout);
+              setTime(res.data.time);
+              setToken(res.data.token);
+              setError(false);
+            } else {
               // console.log(res.data)
               setError(true);
               setErrorDescription(res.data.status.description);
@@ -165,7 +171,12 @@ const EditorScreen = () => {
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[{ color: '#9197AB', marginBottom: 4 }, isFocus && { color: "#D7E2FF", display: 'none' }]}>
+        <Text
+          style={[
+            { color: "#9197AB", marginBottom: 4 },
+            isFocus && { color: "#D7E2FF", display: "none" },
+          ]}
+        >
           Programming Language
         </Text>
       );
@@ -186,7 +197,13 @@ const EditorScreen = () => {
             iconStyle={styles1.iconStyle}
             data={data}
             search
-            itemContainerStyle={{backgroundColor: '#f1f2f3', borderWidth: 0.4, borderColor: '#9197AB', borderRadius: 8, color: "#D7E2FF"}}
+            itemContainerStyle={{
+              backgroundColor: "#f1f2f3",
+              borderWidth: 0.4,
+              borderColor: "#9197AB",
+              borderRadius: 8,
+              color: "#D7E2FF",
+            }}
             maxHeight={300}
             labelField="label"
             valueField="value"
@@ -237,9 +254,11 @@ const EditorScreen = () => {
               highlighterLineHeight: 26,
               marginBottom: 32,
               height: 440,
-              backgroundColor: '#202226'
+              backgroundColor: "#202226",
             },
-            ...(keyboard.keyboardShown ? { marginBottom: "auto", height: 260 } : {}),
+            ...(keyboard.keyboardShown
+              ? { marginBottom: "auto", height: 260 }
+              : {}),
           }}
           onChange={(e) => {
             // console.log("before if", deleteText);
@@ -252,7 +271,6 @@ const EditorScreen = () => {
             // console.log("this is ", answer);
             setAnswer(e);
           }}
-
           // onKeyPress={(e) => {
           //   // console.log("e", e);
           //   if (e === "Backspace") {
@@ -278,9 +296,9 @@ const EditorScreen = () => {
               backgroundColor: "#121213",
               padding: 10,
               justifyContent: "space-around",
-              display: "none"
+              display: "none",
             },
-            ...(keyboard.keyboardShown ? { display: "flex" } : {})
+            ...(keyboard.keyboardShown ? { display: "flex" } : {}),
           }}
         >
           <TouchableOpacity
@@ -290,67 +308,146 @@ const EditorScreen = () => {
               setAnswer(str);
             }}
           >
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"<"}</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"<"}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setAnswer((prev) => prev + ">")}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{">"}</Text>
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {">"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "{")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"{"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + "{")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"{"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "}")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"}"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + "}")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"}"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "(")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"("}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + "(")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"("}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ")")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{")"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + ")")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {")"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + ";")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{";"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + ";")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {";"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "/")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"/"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + "/")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"/"}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => `${prev}"`)} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{'"'}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => `${prev}"`)}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {'"'}
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setAnswer((prev) => prev + "   ")} style={{}}>
-            <Text style={{fontSize: 16, fontWeight: '600', color: '#f1f2f3'}}>{"TAB"}</Text>
+          <TouchableOpacity
+            onPress={() => setAnswer((prev) => prev + "   ")}
+            style={{}}
+          >
+            <Text style={{ fontSize: 16, fontWeight: "600", color: "#f1f2f3" }}>
+              {"TAB"}
+            </Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={finalSubmit} style={{ 
-          ...{
-          borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' 
-        },
-        ...(keyboard.keyboardShown ? { display: "none" } : {}),
-          }}>
+        <TouchableOpacity
+          onPress={finalSubmit}
+          style={{
+            ...{
+              borderColor: "#FFB188",
+              borderWidth: 1,
+              width: width - 80,
+              borderRadius: 100,
+              padding: 16,
+              alignSelf: "center",
+            },
+            ...(keyboard.keyboardShown ? { display: "none" } : {}),
+          }}
+        >
           <Text
             style={{
-              color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
+              color: "#D7E2FF",
+              fontSize: 18,
+              fontWeight: "600",
+              textAlign: "center",
             }}
           >
             Submit Code
           </Text>
         </TouchableOpacity>
-
         {submitted && (
           <>
-            <View style={{
-              backgroundColor: "#202226",
-              padding: 16,
-              width: "100%",
-              borderRadius: 16,
-              elevation: 4,
-              marginVertical: 16,
-              borderWidth: 0.8,
-              borderColor: '#25ff88'
-            }}>
-
-              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 16, marginBottom: 4, fontFamily: 'monospace' }}>Output:</Text>
-              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 18, fontFamily: 'monospace' }}>{output}</Text>
+            {/* <ConfettiCannon
+              count={200}
+              origin={{ x: -10, y: 0 }}
+              autoStart={true}
+            /> */}
+            <View
+              style={{
+                backgroundColor: "#202226",
+                padding: 16,
+                width: "100%",
+                borderRadius: 16,
+                elevation: 4,
+                marginVertical: 16,
+                borderWidth: 0.8,
+                borderColor: "#25ff88",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#D7E2FF",
+                  fontWeight: "600",
+                  fontSize: 16,
+                  marginBottom: 4,
+                  fontFamily: "monospace",
+                }}
+              >
+                Output:
+              </Text>
+              <Text
+                style={{
+                  color: "#D7E2FF",
+                  fontWeight: "600",
+                  fontSize: 18,
+                  fontFamily: "monospace",
+                }}
+              >
+                {output}
+              </Text>
             </View>
             <View
               style={{
@@ -429,37 +526,102 @@ const EditorScreen = () => {
                 </Text>
               </View>
             </View>
-            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Submission ID:</Text>
-            <Text style={{ color: '#D7E2FF', fontWeight: '400', fontSize: 16, marginBottom: 16 }} selectable>{token}</Text>
+            <Text
+              style={{
+                color: "#D7E2FF",
+                fontWeight: "600",
+                fontSize: 14,
+                marginBottom: 4,
+                marginVertical: 4,
+              }}
+            >
+              Submission ID:
+            </Text>
+            <Text
+              style={{
+                color: "#D7E2FF",
+                fontWeight: "400",
+                fontSize: 16,
+                marginBottom: 16,
+              }}
+              selectable
+            >
+              {token}
+            </Text>
           </>
         )}
-
-
 
         {error && (
           <>
-            <View style={{
-              backgroundColor: "#202226",
-              padding: 16,
-              width: "100%",
-              borderRadius: 16,
-              elevation: 4,
-              marginVertical: 16,
-              borderWidth: 0.8,
-              borderColor: '#ff2544'
-            }}>
-
-              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 16, marginBottom: 4, fontFamily: 'monospace' }}>Error:</Text>
-              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 18, fontFamily: 'monospace' }}>{errorDescription}</Text>
+            <View
+              style={{
+                backgroundColor: "#202226",
+                padding: 16,
+                width: "100%",
+                borderRadius: 16,
+                elevation: 4,
+                marginVertical: 16,
+                borderWidth: 0.8,
+                borderColor: "#ff2544",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#D7E2FF",
+                  fontWeight: "600",
+                  fontSize: 16,
+                  marginBottom: 4,
+                  fontFamily: "monospace",
+                }}
+              >
+                Error:
+              </Text>
+              <Text
+                style={{
+                  color: "#D7E2FF",
+                  fontWeight: "600",
+                  fontSize: 18,
+                  fontFamily: "monospace",
+                }}
+              >
+                {errorDescription}
+              </Text>
             </View>
-            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Exit Code: {exitCode}</Text>
-            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Submission ID:</Text>
-            <Text style={{ color: '#D7E2FF', fontWeight: '400', fontSize: 16, marginBottom: 16 }} selectable>{token}</Text>
+            <Text
+              style={{
+                color: "#D7E2FF",
+                fontWeight: "600",
+                fontSize: 14,
+                marginBottom: 4,
+                marginVertical: 4,
+              }}
+            >
+              Exit Code: {exitCode}
+            </Text>
+            <Text
+              style={{
+                color: "#D7E2FF",
+                fontWeight: "600",
+                fontSize: 14,
+                marginBottom: 4,
+                marginVertical: 4,
+              }}
+            >
+              Submission ID:
+            </Text>
+            <Text
+              style={{
+                color: "#D7E2FF",
+                fontWeight: "400",
+                fontSize: 16,
+                marginBottom: 16,
+              }}
+              selectable
+            >
+              {token}
+            </Text>
           </>
         )}
-
-
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -501,21 +663,21 @@ const styles1 = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
-    color: '#9198AD'
+    color: "#9198AD",
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: '#D7E2FF'
+    color: "#D7E2FF",
   },
   iconStyle: {
     // wvalueth: 24,
     height: 24,
-    color: '#D7E2FF'
+    color: "#D7E2FF",
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
-    backgroundColor: '#f1f2f3'
+    backgroundColor: "#f1f2f3",
   },
 });
 
@@ -525,13 +687,12 @@ const styles2 = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     marginTop: 24,
-    width: '100%'
+    width: "100%",
   },
   textview: {
     color: "white",
-    fontWeight: "700"
-  }
-
+    fontWeight: "700",
+  },
 });
 
 export default EditorScreen;
