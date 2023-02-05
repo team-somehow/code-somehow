@@ -28,13 +28,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        {
-          "initialOrientation": "DEFAULT"
-        }
-      ]
-    ]
+    }
   }
 }
