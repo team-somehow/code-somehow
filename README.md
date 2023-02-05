@@ -107,9 +107,6 @@ npm start
 - [@Vatsal](https://github.com/bevatsal1122)
 - [@VinayKanse](https://github.com/VinayKanase)
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
-who participated in this project.
-
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 
 - Hat tip to anyone whose code was used
