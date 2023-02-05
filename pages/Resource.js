@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   linkTitle: {
-    color: "white",
+    color: "#D7E2FF",
     marginVertical: 10,
     fontSize: 16,
   },

@@ -27,14 +27,17 @@ const Item = ({ title, navigation, difficulty, item }) => (
 	<TouchableOpacity
 		onPress={() => navigation.navigate("Problem", { ...item })}
 		style={{
-			backgroundColor: "#363940",
-			padding: 12,
-			marginBottom: 16,
+			backgroundColor: "#202226",
+			padding: 8,
+			paddingHorizontal: 24,
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'space-between',
+			width: width - 48,
 			borderRadius: 8,
+			elevation: 6,
 			flexDirection: "row",
-			justifyContent: "space-between",
-			alignItems: "center",
-			// flexWrap: "wrap",
+			marginBottom: 16,
 		}}
 	>
 		<Text
@@ -49,7 +52,8 @@ const Item = ({ title, navigation, difficulty, item }) => (
 			style={{
 				backgroundColor: "#16171a",
 				padding: 8,
-				borderRadius: 6,
+				borderRadius: 8,
+				elevation: 8
 			}}
 		>
 			<Text
@@ -67,29 +71,7 @@ const Item = ({ title, navigation, difficulty, item }) => (
 const PracticeScreen = ({ navigation, route }) => {
 	return (
 		<SafeAreaView style={styles.container}>
-			<View
-				style={{
-					width: "100%",
-					borderRadius: 16,
-					flexDirection: "row",
-					justifyContent: "space-between",
-					alignItems: "center",
-					marginBottom: 32,
-					backgroundColor: "#363940",
-					padding: 8,
-				}}
-			>
-				<Text
-					style={{
-						fontSize: 32,
-						fontWeight: "800",
-						letterSpacing: 1.8,
-						color: "#D7E2FF",
-					}}
-				>
-					Questions
-				</Text>
-			</View>
+			<Text style={styles.heading}>Questions</Text>
 			<FlatList
 				data={problemStatments}
 				renderItem={({ item }) => (
@@ -112,6 +94,14 @@ const styles = StyleSheet.create({
 		padding: 24,
 		backgroundColor: "#16171a",
 		// alignItems: "left",
+	},
+	heading: {
+		textAlign: 'left',
+		color: "#D7E2FF",
+		fontSize: 24,
+		fontWeight: "600",
+		letterSpacing: 0.8,
+		marginBottom: 24,
 	},
 });
 
