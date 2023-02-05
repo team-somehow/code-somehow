@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
+    "name": "AnyCode",
+    "slug": "AnyCode",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
