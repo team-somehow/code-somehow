@@ -1,15 +1,14 @@
 <p align="center">
-  <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
+<a href="" rel="noopener">
+ <img src="/assets/adaptive-icon.png" alt="Any Code">
+</a>
 </p>
-<h3 align="center">my-app</h3>
+<h1 align="center">Any Code - Making Coding Accessible</h1>
 
 <div align="center">
-
-[![Hackathon](https://img.shields.io/badge/hackathon-SPIT-orange.svg)](http://hackathon.url.com)
+[![Hackathon](https://img.shields.io/badge/hackathon-SPIT-orange.svg)](https://csi.spit.ac.in/hackathon)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
-
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE.md)
 </div>
 
 ---
