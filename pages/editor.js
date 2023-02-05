@@ -11,7 +11,7 @@ import {
   ScrollView,
   ImageBackground,
   FlatList,
-  Alert,
+  Alert, 
 } from "react-native";
 // import KeyboardListener from "react-native-keyboard-listener";
 // import { AntDesign } from "@expo/vector-icons";
@@ -46,6 +46,9 @@ const EditorScreen = () => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [ready, setReady] = useState("");
+  const [error, setError] = useState(false);
+  const [errorDescription, setErrorDescription] = useState("");
+  const [exitCode, setExitCode] = useState("");
 
   useEffect(() => {
     for (var i = 0; i < data.length; ++i) {
@@ -132,13 +135,23 @@ const EditorScreen = () => {
         axios
           .request(options1)
           .then(function (res) {
+            // console.log(res.data.status.description);
+            // console.log(res.data.stdout);
+            setMemory(res.data.memory);
+            if (res.data?.status?.description!=null && res.data?.status?.description==="Accepted") {
             setSubmitted(true);
-            console.log(res.data.stdout);
-            // console.log(res.data);
             setOutput(res.data.stdout);
             setTime(res.data.time);
             setToken(res.data.token);
-            setMemory(res.data.memory);
+            setError(false);
+            }
+            else {
+              // console.log(res.data)
+              setError(true);
+              setErrorDescription(res.data.status.description);
+              setExitCode(res.data.exit_code);
+              setSubmitted(false);
+            }
           })
           .catch(function (error) {
             console.error(error);
@@ -308,13 +321,15 @@ const EditorScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={finalSubmit} style={{ borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' }}>
+        <TouchableOpacity onPress={finalSubmit} style={{ 
+          ...{
+          borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' 
+        },
+        ...(keyboard.keyboardShown ? { display: "none" } : {}),
+          }}>
           <Text
             style={{
-              ...{
-                color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
-              },
-              ...(keyboard.keyboardShown ? { display: "none" } : {}),
+              color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
             }}
           >
             Submit Code
@@ -418,6 +433,32 @@ const EditorScreen = () => {
             <Text style={{ color: '#D7E2FF', fontWeight: '400', fontSize: 16, marginBottom: 16 }} selectable>{token}</Text>
           </>
         )}
+
+
+
+        {error && (
+          <>
+            <View style={{
+              backgroundColor: "#202226",
+              padding: 16,
+              width: "100%",
+              borderRadius: 16,
+              elevation: 4,
+              marginVertical: 16,
+              borderWidth: 0.8,
+              borderColor: '#ff2544'
+            }}>
+
+              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 16, marginBottom: 4, fontFamily: 'monospace' }}>Error:</Text>
+              <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 18, fontFamily: 'monospace' }}>{errorDescription}</Text>
+            </View>
+            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Exit Code: {exitCode}</Text>
+            <Text style={{ color: '#D7E2FF', fontWeight: '600', fontSize: 14, marginBottom: 4, marginVertical: 4 }}>Submission ID:</Text>
+            <Text style={{ color: '#D7E2FF', fontWeight: '400', fontSize: 16, marginBottom: 16 }} selectable>{token}</Text>
+          </>
+        )}
+
+
 
       </ScrollView>
     </SafeAreaView>

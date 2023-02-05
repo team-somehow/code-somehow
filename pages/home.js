@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -12,6 +12,7 @@ import {
   ImageBackground,
   FlatList,
   Alert,
+  Animated,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -37,6 +38,35 @@ const HomeScreen = ({ navigation, route }) => {
     labels: ["Easy", "Medium", "Hard"], // optional
     data: [0.4, 0.6, 0.8],
   };
+
+  const fadeAnim1 = useRef(new Animated.Value(0)).current;
+  const fadeAnim2 = useRef(new Animated.Value(0)).current;
+  const fadeAnim3 = useRef(new Animated.Value(0)).current;
+  const fadeAnim4 = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(fadeAnim1, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(fadeAnim2, {
+      toValue: 1,
+      duration: 3500,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(fadeAnim3, {
+      toValue: 1,
+      duration: 5000,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(fadeAnim4, {
+      toValue: 1,
+      duration: 8000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
   const tempDates = [
     "2023-01-02",
     "2023-01-03",
@@ -169,8 +199,9 @@ const HomeScreen = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View
+        <Animated.View
           style={{
+            opacity: fadeAnim1,
             backgroundColor: "#202226",
             padding: 16,
             width: "100%",
@@ -261,10 +292,11 @@ const HomeScreen = ({ navigation, route }) => {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </Animated.View>
 
-        <View
+        <Animated.View
           style={{
+            opacity: fadeAnim2,
             backgroundColor: "#202226",
             padding: 16,
             width: "100%",
@@ -293,7 +325,7 @@ const HomeScreen = ({ navigation, route }) => {
           >
             HTML, CSS, JavaScript, ReactJS, React Native,{" "}
           </Text>
-        </View>
+        </Animated.View>
 
         <View
           style={{
@@ -302,8 +334,9 @@ const HomeScreen = ({ navigation, route }) => {
             width: "100%",
           }}
         >
-          <View
+          <Animated.View
             style={{
+              opacity: fadeAnim3,
               backgroundColor: "#202226",
               padding: 16,
               width: "48%",
@@ -335,10 +368,11 @@ const HomeScreen = ({ navigation, route }) => {
             >
               Streak Maintained
             </Text>
-          </View>
+          </Animated.View>
 
-          <View
+          <Animated.View
             style={{
+              opacity: fadeAnim3,
               backgroundColor: "#202226",
               padding: 16,
               width: "48%",
@@ -370,36 +404,41 @@ const HomeScreen = ({ navigation, route }) => {
             >
               Problems Solved
             </Text>
-          </View>
+          </Animated.View>
         </View>
+        <Animated.View style={{ opacity: fadeAnim4 }}>
+          <ContributionGraph
+            values={commitsData}
+            endDate={new Date("2023-04-01")}
+            numDays={94}
+            width={width}
+            height={220}
+            chartConfig={chartConfigGit}
+          />
+        </Animated.View>
 
-        <ContributionGraph
-          values={commitsData}
-          endDate={new Date("2023-04-01")}
-          numDays={94}
-          width={width}
-          height={220}
-          chartConfig={chartConfigGit}
-        />
+        <Animated.View style={{ opacity: fadeAnim4 }}>
+          <ProgressChart
+            data={dataRings}
+            width={width - 56}
+            height={220}
+            strokeWidth={16}
+            radius={32}
+            chartConfig={chartConfigRings}
+            hideLegend={false}
+          />
+        </Animated.View>
 
-        <ProgressChart
-          data={dataRings}
-          width={width - 56}
-          height={220}
-          strokeWidth={16}
-          radius={32}
-          chartConfig={chartConfigRings}
-          hideLegend={false}
-        />
-
-        <BarChart
-          data={dataBar}
-          width={width}
-          height={220}
-          yAxisLabel=""
-          chartConfig={chartConfigBar}
-          verticalLabelRotation={30}
-        />
+        <Animated.View style={{ opacity: fadeAnim4 }}>
+          <BarChart
+            data={dataBar}
+            width={width}
+            height={220}
+            yAxisLabel=""
+            chartConfig={chartConfigBar}
+            verticalLabelRotation={30}
+          />
+        </Animated.View>
       </ScrollView>
     </SafeAreaView>
   );
