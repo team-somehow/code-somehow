@@ -12,6 +12,7 @@ import {
   ImageBackground,
   FlatList,
   Alert,
+  Linking
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";

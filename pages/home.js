@@ -13,6 +13,7 @@ import {
   FlatList,
   Alert,
   Animated,
+  Linking,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -244,7 +245,7 @@ const HomeScreen = ({ navigation, route }) => {
               }}
             >
               <TouchableOpacity
-                onPress={() => console.log("LinkedIN")}
+                onPress={() => Linking.openURL('https://www.linkedin.com/in/harshalhdave/')}
                 style={{
                   backgroundColor: "#363940",
                   padding: 8,
@@ -260,7 +261,7 @@ const HomeScreen = ({ navigation, route }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => console.log("LinkedIN")}
+                onPress={() => Linking.openURL("https://github.com/HarshalHDave")}
                 style={{
                   backgroundColor: "#363940",
                   padding: 8,
@@ -276,7 +277,7 @@ const HomeScreen = ({ navigation, route }) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() => console.log("LinkedIN")}
+                onPress={() => Linking.openURL("https://stackoverflow.com/")}
                 style={{
                   backgroundColor: "#363940",
                   padding: 8,
@@ -323,7 +324,7 @@ const HomeScreen = ({ navigation, route }) => {
               marginBottom: 4,
             }}
           >
-            HTML, CSS, JavaScript, ReactJS, React Native,{" "}
+            HTML, CSS, JavaScript, ReactJS, React Native, C++,C , MySQL MomgoBD{" "}
           </Text>
         </Animated.View>
 
@@ -354,8 +355,7 @@ const HomeScreen = ({ navigation, route }) => {
                 fontWeight: "900",
                 marginBottom: 2,
               }}
-            >
-              61
+            > 2
             </Text>
             <Text
               style={{
@@ -391,7 +391,7 @@ const HomeScreen = ({ navigation, route }) => {
                 marginBottom: 2,
               }}
             >
-              512
+              122
             </Text>
             <Text
               style={{
