@@ -6,9 +6,11 @@
 <h1 align="center">Any Code - Making Coding Accessible</h1>
 
 <div align="center">
+
 [![Hackathon](https://img.shields.io/badge/hackathon-SPIT-orange.svg)](https://csi.spit.ac.in/hackathon)
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE.md)
+
 </div>
 
 ---
@@ -98,10 +100,12 @@ npm start
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@HarshalDave]()
-- [@Arya]()
-- [@Vatsal]()
-- [@VinayKanse](https://github.com/VinaySitaramKanse)
+### TeamSomehow
+
+- [@HarshalDave](https://github.com/HarshalHDave)
+- [@Arya](https://github.com/Arya-A-Nair)
+- [@Vatsal](https://github.com/bevatsal1122)
+- [@VinayKanse](https://github.com/VinayKanase)
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
 who participated in this project.
