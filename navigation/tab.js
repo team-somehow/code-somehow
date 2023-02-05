@@ -93,7 +93,7 @@ const TabNavigation = () => {
 				options={{
 					tabBarLabel: "My Codes",
 					tabBarIcon: ({ color, size }) => (
-						<AntDesign name="book" size={size} color={color} />
+						<Feather name="bookmark" size={size} color={color} />
 					),
 				}}
 			/>

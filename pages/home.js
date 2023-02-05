@@ -47,22 +47,22 @@ const HomeScreen = ({ navigation, route }) => {
     // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(fadeAnim1, {
       toValue: 1,
-      duration: 2000,
+      duration: 3000,
       useNativeDriver: true,
     }).start();
     Animated.timing(fadeAnim2, {
       toValue: 1,
-      duration: 2500,
+      duration: 3500,
       useNativeDriver: true,
     }).start();
     Animated.timing(fadeAnim3, {
       toValue: 1,
-      duration: 3000,
+      duration: 5000,
       useNativeDriver: true,
     }).start();
     Animated.timing(fadeAnim4, {
       toValue: 1,
-      duration: 4500,
+      duration: 8000,
       useNativeDriver: true,
     }).start();
   }, []);
