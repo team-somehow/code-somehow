@@ -27,7 +27,6 @@ const MyCode = ({ navigation, route }) => {
 	const getUser = async () => {
 		try {
 			const userData = await JSON.parse(await AsyncStorage.getItem("savedProbsMock"));
-            console.log(userData);
       if (userData===null) return [];
 			return userData;
 		} catch (error) {
@@ -39,12 +38,12 @@ const MyCode = ({ navigation, route }) => {
 
     useEffect(() => {
         const getInfo = async () => {
-            console.log(await getUser())
             setData(await getUser());
         }
+		
         getInfo();
         
-    }, [])
+    })
 
 	return (
 		<SafeAreaView style={styles.container}>
