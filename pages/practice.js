@@ -92,6 +92,7 @@ const PracticeScreen = ({ navigation, route }) => {
 			</View>
 			<FlatList
 				data={problemStatments}
+				keyExtractor={item=>item.title}
 				renderItem={({ item }) => (
 					<Item
 						title={item.title}
@@ -100,7 +101,6 @@ const PracticeScreen = ({ navigation, route }) => {
 						item={item}
 					/>
 				)}
-				keyExtractor={(item) => item.id}
 			></FlatList>
 		</SafeAreaView>
 	);
