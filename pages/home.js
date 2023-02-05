@@ -170,7 +170,7 @@ const HomeScreen = ({ navigation, route }) => {
               color: "#D7E2FF",
             }}
           >
-            Any Kode
+            Any Code
           </Text>
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity

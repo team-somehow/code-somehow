@@ -42,7 +42,7 @@ const Problem = ({ route, props,navigation }) => {
 				</Text>
 				<View
 					style={{
-						backgroundColor: "#363940",
+						backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
@@ -69,7 +69,7 @@ const Problem = ({ route, props,navigation }) => {
 				</View>
 				<View
 					style={{
-						backgroundColor: "#363940",
+						backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
@@ -96,7 +96,7 @@ const Problem = ({ route, props,navigation }) => {
 				</View>
 				<View
 					style={{
-						backgroundColor: "#363940",
+						backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
@@ -123,7 +123,7 @@ const Problem = ({ route, props,navigation }) => {
 				</View>
 				<View
 					style={{
-						backgroundColor: "#363940",
+						backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
@@ -150,7 +150,7 @@ const Problem = ({ route, props,navigation }) => {
 				</View>
 				<View
 					style={{
-						backgroundColor: "#363940",
+						backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
@@ -184,7 +184,7 @@ const Problem = ({ route, props,navigation }) => {
 							borderRadius: 16,
 							elevation: 4,
 							marginVertical: 16,
-							borderWidth: 0.3,
+							borderWidth: 0.8,
 							borderColor: "#dddd11",
 						}}
 					>
@@ -218,7 +218,7 @@ const Problem = ({ route, props,navigation }) => {
 							borderRadius: 16,
 							elevation: 4,
 							marginVertical: 16,
-							borderWidth: 0.3,
+							borderWidth: 0.8,
 							borderColor: "#25ff88",
 						}}
 					>
@@ -247,7 +247,7 @@ const Problem = ({ route, props,navigation }) => {
 				</View>
 				<View
 					style={{
-						// backgroundColor: "#363940",
+						// backgroundColor: "#202226",
 						marginVertical: 20,
 						width: "100%",
 						padding: 16,
