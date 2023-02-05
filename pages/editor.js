@@ -321,13 +321,15 @@ const EditorScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={finalSubmit} style={{ borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' }}>
+        <TouchableOpacity onPress={finalSubmit} style={{ 
+          ...{
+          borderColor: '#FFB188', borderWidth: 1, width: width - 80, borderRadius: 100, padding: 16, alignSelf: 'center' 
+        },
+        ...(keyboard.keyboardShown ? { display: "none" } : {}),
+          }}>
           <Text
             style={{
-              ...{
-                color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
-              },
-              ...(keyboard.keyboardShown ? { display: "none" } : {}),
+              color: '#D7E2FF', fontSize: 18, fontWeight: '600', textAlign: 'center'
             }}
           >
             Submit Code
