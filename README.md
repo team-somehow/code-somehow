@@ -58,6 +58,13 @@ Things you need to install the software and how to install them.
 
 - Requires Node to be installed
 - Requires `Expo` to be installed on your mobile device.
+- Steps to set up Judge0 API from RapidAPI:
+  1. Sign up or log in to RapidAPI.
+  1. Search for "Judge0 API" and select the API from the results.
+  1. Click on the "Pricing" tab to select a plan that fits your usage needs.(free plan has allows 50 requests per day).
+  1. Once you have chosen a plan, click the "Subscribe" button to subscribe to the API.
+  1. Click on the "Endpoints" tab to see the available endpoints for the Judge0 API.
+  1. Copy the API endpoint URL and API Key from the "Code Snippets" section and use it in update enpoint in this project.
 
 ### Installing
 
